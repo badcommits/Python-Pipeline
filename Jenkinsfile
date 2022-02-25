@@ -1,5 +1,5 @@
 pipeline {
-     agent none
+     agent { docker { image 'python:latest' }
 
      stages {
 
@@ -10,10 +10,6 @@ pipeline {
           }
 
           stage('Build') {
-
-               agent {
-                    docker { image 'python:latest' }
-               }
 
                steps {
                     echo 'Building Dependencies'
