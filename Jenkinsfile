@@ -26,14 +26,20 @@ pipeline {
           stage('Unit Testing') {
                steps {
                     echo 'Unit Testing'
+                    sh '''
+                    python -m unittest unit_test.py
+                    '''
                }
           }
 
           stage('SonarQube Analysis') {
                steps {
-                    echo 'SonarQube testing'     
+                    echo 'SonarQube testing'
+                    def scannerHome = tool 'SonarScanner 4.0';
+                    withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
+                         sh "${scannerHome}/bin/sonar-scanner"
+                    }
                }
-          }
 
      }
 }
