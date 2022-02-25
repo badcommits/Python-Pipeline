@@ -27,7 +27,9 @@ pipeline {
                steps {
                     echo 'Unit Testing'
                     sh '''
-                    python -m unittest unit_test.py
+                    coverage run -m unittest unit_test.py
+                    coverage report -m
+                    coverage xml
                     '''
                }
           }
