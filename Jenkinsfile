@@ -7,6 +7,11 @@ pipeline {
      }
 
      stages {
+          stage('Initialize'){
+               def dockerHome = tool 'mydocker'
+               env.PATH = "${dockerHome}/bin:${env.PATH}"
+          }
+
           stage('Git Checkout') {
                steps {
                     git branch: 'main', credentialsId: 'github', url: 'https://github.com/badcommits/Python-Pipeline.git'
