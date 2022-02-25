@@ -1,5 +1,10 @@
 pipeline {
-     agent { docker { image 'python:latest' } }
+     agent {
+          docker {
+            image 'python:latest'
+            args '-u root'
+        }
+     }
 
      stages {
 
