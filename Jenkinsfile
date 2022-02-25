@@ -40,7 +40,7 @@ pipeline {
                          script {
                               def scannerHome = tool 'SonarScanner';
                               withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
-                                   sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${TOKEN}"
+                                   sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=f77ff424bf0cbf53b12f35b36a48636ca6f0256f"
                               }
                          }
                     }//end step
