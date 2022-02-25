@@ -35,8 +35,8 @@ pipeline {
           }
 
           stage('SonarQube Analysis') {
-               withCredentials([string(credentialsId: 'sonar-token', variable: 'TOKEN')]) {
-                    steps {
+                    steps {                         
+                         withCredentials([string(credentialsId: 'sonar-token', variable: 'TOKEN')]) {
                          script {
                               def scannerHome = tool 'SonarScanner';
                               withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
