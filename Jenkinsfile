@@ -1,18 +1,7 @@
 pipeline {
-     agent {
-          docker {
-               image 'python:latest'
-               args '-u root'
-          }
-     }
+     agent none
 
      stages {
-          stage('Initialize'){
-               steps {
-                    def dockerHome = tool 'mydocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-               }
-          }
 
           stage('Git Checkout') {
                steps {
@@ -21,6 +10,11 @@ pipeline {
           }
 
           stage('Build') {
+
+               agent {
+                    docker { image 'python:latest' }
+               }
+
                steps {
                     echo 'Building Dependencies'
                     sh 'pip install -r requirements.txt'
