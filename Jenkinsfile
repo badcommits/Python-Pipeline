@@ -1,7 +1,5 @@
 pipeline {
-     agent {
-          docker { image 'python:latest' }
-     }
+     agent any
 
      stages {
           stage('Git Checkout') {
@@ -13,6 +11,7 @@ pipeline {
           stage('Build') {
                steps {
                     echo 'Building Dependencies'
+                    sh 'apt update'
                     sh 'pip install -r requirements.txt'
                     
                }
